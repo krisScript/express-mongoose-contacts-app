@@ -1,0 +1,61 @@
+<%- include('includes/head.ejs') %>
+</head>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <section class="section">
+        <div class="container has-text-centered">
+                <h1 class="title is-size-1">
+                        My Contacts
+                </h1>
+        </div>
+        <section class="section">
+          <% if (contacts.length > 0) { %>
+            <div class="columns is-multiline">
+                <% for (let contact of contacts) { %>
+                  <div class="column is-one-quarter">
+                      <div class="card">
+                          <header class="card-header">
+                            <p class="card-header-title">
+                                <%= contact.name %>
+                            </p>
+                            <a href="#" class="card-header-icon" aria-label="more options">
+                              <span class="icon">
+                                  <i class="fas fa-user"></i>
+                              </span>
+                            </a>
+                          </header>
+                          <div class="card-content">
+                            <div class="content">
+                              <p>Email: <%= contact.email %></p>
+                              <p>Phone Number: <%= contact.phoneNumber %></p>
+                              <p>Address: <%= contact.address %></p>
+                            </div>
+                          </div>
+                          <footer class="card-footer">
+                            <div class="card-footer-item">
+                              <a href="/edit-contact/<%= contact._id %>?edit=true" class="button is-warning">Edit</a>
+                            </div>
+                            <form action="/delete-contact" method="POST" class="card-footer-item">
+                              <input type="hidden" value="<%= contact._id %>" name="contactId">
+                              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                              <button class="button is-danger"  type="submit">Delete</button>
+                          </form>
+                          </footer>
+                        </div>
+                  </div>
+                  
+                    <% } %>
+                    </div>
+            <% } else { %>
+               <div class="container has-text-centered">
+                 <h2 class="title is-size-4">No Contacts Found!  <a class="is-link" href="/add-contact">Add Now</a></h2>
+                
+               </div>
+                <% } %>
+        </section>
+      </section>
+    
+        
+   
+
+<%- include('includes/end.ejs') %>

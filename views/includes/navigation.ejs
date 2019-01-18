@@ -1,0 +1,48 @@
+
+
+
+ 
+ <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+   <div class="navbar-brand">
+     <p class="navbar-item">My Contacts</p>
+     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+       <span aria-hidden="true"></span>
+       <span aria-hidden="true"></span>
+       <span aria-hidden="true"></span>
+     </a>
+   </div>
+ 
+   <% if (isAuthenticated) { %>
+    <div class="navbar-menu is-dark">
+      <a class="navbar-item has-text-white" href="/add-contact">Add Contact</a>
+      <a class="navbar-item has-text-white" href="/contacts">Contacts</a>
+    </div>
+<% } %>
+
+     <div class="navbar-end">
+       <div class="navbar-item">
+        <% if (!isAuthenticated) { %>
+          <div class="buttons">
+            <a href="/signup" class="button is-link">
+              <strong>Sign up</strong>
+            </a>
+            <a href="/login" class="button is-primary">
+               <strong>Login</strong>
+             </a>
+             
+          </div>
+              
+          
+        <% }
+        else { %>
+         <div class="navbar-item">
+          <form action="/logout" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="button is-link" type="submit">Logout</button>
+        </form>
+         </div>
+          <% } %>
+       </div>
+     </div>
+   </div>
+ </nav>

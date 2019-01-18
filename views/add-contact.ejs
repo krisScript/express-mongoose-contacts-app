@@ -1,0 +1,67 @@
+<%- include('includes/head.ejs') %>
+</head>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <section class="section">
+        <div class="container has-text-centered">
+            <h1 class="title is-size-1">Add Contact</h1>
+        </div>
+        <div class="box">
+            <form action="/<% if (editing) { %>edit-contact<% } else { %>add-contact<% } %>" method="POST">
+                    <div class="field">
+                            <label class="label">Name</label>
+                            <div class="control has-icons-left has-icons-right">
+                              <input class="input" required type="text" placeholder="Text input" name="name" value="<% if (editing) { %><%= contact.name %><% } %>">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                              </span>
+                              <span class="icon is-small is-right">
+                            </div>
+                          </div>
+                          <div class="field">
+                            <label class="label">Phone Number</label>
+                            <div class="control has-icons-left has-icons-right">
+                              <input class="input" required type="text" placeholder="Text input" name="phoneNumber" value="<% if (editing) { %><%= contact.phoneNumber %><% } %>">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                              </span>
+                              <span class="icon is-small is-right">
+                            </div>
+                          </div>
+                          <div class="field">
+                                <label class="label">Address</label>
+                                <div class="control has-icons-left has-icons-right">
+                                  <input class="input" required type="text" placeholder="Text input" name="address" value="<% if (editing) { %><%= contact.address %><% } %>">
+                                  <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                  </span>
+                                  <span class="icon is-small is-right">
+                                </div>
+                              </div>
+                          <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                              <input class="input" required type="email" placeholder="Email input" name="email" value="<% if (editing) { %><%= contact.email %><% } %>">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                              </span>
+                            </div>
+                          </div>
+                          <% if (editing) { %>
+                            <input type="hidden" value="<%= contact._id %>" name="contactId">
+                        <% } %>
+            
+                          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                          <div class="field is-grouped">
+                            <div class="control">
+                              <button class="button is-link">Submit</button>
+                            </div>
+                          </div>
+            </form>
+        </div>
+        </section>
+    
+        
+   
+
+<%- include('includes/end.ejs') %>
