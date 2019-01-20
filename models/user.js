@@ -37,7 +37,7 @@ userSchema.methods.addContact = contact => {
   const updatedContactsData = {
     contacts: updatedContacts
   };
-  this.contactsData = contactsData;
+  this.contactsData = updatedContactsData;
   return this.save();
 };
 
